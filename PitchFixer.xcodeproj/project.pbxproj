@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8A13E4632F1A5D5D002D463D /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8A13E4622F1A5D5D002D463D /* AudioKit */; };
+		8A13E4662F1A5FD2002D463D /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = 8A13E4652F1A5FD2002D463D /* AudioKitEX */; };
+		8A13E4692F1A5FEB002D463D /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8A13E4682F1A5FEB002D463D /* SoundpipeAudioKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		8A13E4502F1A4F3C002D463D /* PitchFixer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchFixer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +29,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A13E4632F1A5D5D002D463D /* AudioKit in Frameworks */,
+				8A13E4662F1A5FD2002D463D /* AudioKitEX in Frameworks */,
+				8A13E4692F1A5FEB002D463D /* SoundpipeAudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +74,9 @@
 			);
 			name = PitchFixer;
 			packageProductDependencies = (
+				8A13E4622F1A5D5D002D463D /* AudioKit */,
+				8A13E4652F1A5FD2002D463D /* AudioKitEX */,
+				8A13E4682F1A5FEB002D463D /* SoundpipeAudioKit */,
 			);
 			productName = PitchFixer;
 			productReference = 8A13E4502F1A4F3C002D463D /* PitchFixer.app */;
@@ -94,6 +106,11 @@
 			);
 			mainGroup = 8A13E4472F1A4F3C002D463D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8A13E4612F1A5D5D002D463D /* XCRemoteSwiftPackageReference "AudioKit" */,
+				8A13E4642F1A5FD2002D463D /* XCRemoteSwiftPackageReference "AudioKitEX" */,
+				8A13E4672F1A5FEB002D463D /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8A13E4512F1A4F3C002D463D /* Products */;
 			projectDirPath = "";
@@ -248,12 +265,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -278,12 +307,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = YES;
+				ENABLE_FILE_ACCESS_DOWNLOADS_FOLDER = readwrite;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
-				ENABLE_USER_SELECTED_FILES = readonly;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = YES;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readwrite;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -325,6 +366,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8A13E4612F1A5D5D002D463D /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.5;
+			};
+		};
+		8A13E4642F1A5FD2002D463D /* XCRemoteSwiftPackageReference "AudioKitEX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitEX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.2;
+			};
+		};
+		8A13E4672F1A5FEB002D463D /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8A13E4622F1A5D5D002D463D /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A13E4612F1A5D5D002D463D /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		8A13E4652F1A5FD2002D463D /* AudioKitEX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A13E4642F1A5FD2002D463D /* XCRemoteSwiftPackageReference "AudioKitEX" */;
+			productName = AudioKitEX;
+		};
+		8A13E4682F1A5FEB002D463D /* SoundpipeAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8A13E4672F1A5FEB002D463D /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
+			productName = SoundpipeAudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8A13E4482F1A4F3C002D463D /* Project object */;
 }
