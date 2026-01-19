@@ -9,6 +9,12 @@ A macOS/iOS application that detects the pitch of audio files and corrects them 
 - **Multiple Format Support**: Supports major audio formats including MP3, WAV, M4A
 - **Drag & Drop**: Easy processing by simply dropping files
 
+
+https://github.com/user-attachments/assets/a491193b-7ab2-44c0-b98a-497724558d23
+
+
+
+
 ## 🚀 Installation (Important!)
 
 Since this app is not notarized by Apple, you must follow these specific steps to bypass macOS security restrictions on the first launch.
