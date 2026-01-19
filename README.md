@@ -1,104 +1,104 @@
 # PitchFixer 440
 
-オーディオファイルのピッチを検出し、440Hz（A4）に補正するmacOS/iOSアプリケーションです。
+A macOS/iOS application that detects the pitch of audio files and corrects them to 440Hz (A4).
 
-## 機能
+## Features
 
-- **ピッチ検出**: オーディオファイルのピッチを自動検出
-- **440Hz補正**: 検出されたピッチを440Hz（A4）に補正
-- **複数フォーマット対応**: MP3、WAV、M4Aなどの主要なオーディオフォーマットに対応
-- **ドラッグ&ドロップ**: ファイルをドロップするだけで簡単に処理
+- **Pitch Detection**: Automatically detects the pitch of audio files
+- **440Hz Correction**: Corrects detected pitch to 440Hz (A4)
+- **Multiple Format Support**: Supports major audio formats including MP3, WAV, M4A
+- **Drag & Drop**: Easy processing by simply dropping files
 
-## 対応プラットフォーム
+## Supported Platforms
 
-- macOS 15.6以降
-- iOS 26.2以降
+- macOS 15.6 or later
+- iOS 26.2 or later
 
-## 必要な環境
+## Requirements
 
-- Xcode 26.2以降
-- Swift 5.0以降
+- Xcode 26.2 or later
+- Swift 5.0 or later
 
-## セットアップ
+## Setup
 
-### 1. リポジトリのクローン
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Tatsurou-Yajima/PitchFixer.git
 cd PitchFixer
 ```
 
-### 2. Xcodeでプロジェクトを開く
+### 2. Open the Project in Xcode
 
 ```bash
 open PitchFixer.xcodeproj
 ```
 
-### 3. 依存関係の解決
+### 3. Resolve Dependencies
 
-プロジェクトを開くと、Swift Package Managerが自動的に依存関係を解決します：
+When you open the project, Swift Package Manager will automatically resolve dependencies:
 
-- AudioKit 5.6.5以降
-- AudioKitEX 5.6.2以降
-- SoundpipeAudioKit 5.7.3以降
+- AudioKit 5.6.5 or later
+- AudioKitEX 5.6.2 or later
+- SoundpipeAudioKit 5.7.3 or later
 
-### 4. ビルドと実行
+### 4. Build and Run
 
-- **macOS**: `Cmd + R` でビルド&実行
-- **iOS**: シミュレーターまたは実機を選択して `Cmd + R` でビルド&実行
+- **macOS**: Press `Cmd + R` to build and run
+- **iOS**: Select a simulator or device and press `Cmd + R` to build and run
 
-## 使い方
+## Usage
 
 ### macOS
 
-1. アプリを起動
-2. オーディオファイルをドロップ領域にドラッグ&ドロップ、または「ファイルを選択」ボタンをクリック
-3. アプリが自動的にピッチを検出
-4. 「440Hzに補正して保存」ボタンをクリック
-5. 保存先を選択して保存
+1. Launch the app
+2. Drag and drop an audio file into the drop area, or click the "Select File" button
+3. The app will automatically detect the pitch
+4. Click the "Correct to 440Hz and Save" button
+5. Select a save location and save
 
 ### iOS
 
-1. アプリを起動
-2. 「ファイルを選択」ボタンをタップしてオーディオファイルを選択
-3. アプリが自動的にピッチを検出
-4. 「440Hzに補正して保存」ボタンをタップ
-5. 保存先を選択して保存
+1. Launch the app
+2. Tap the "Select File" button to choose an audio file
+3. The app will automatically detect the pitch
+4. Tap the "Correct to 440Hz and Save" button
+5. Select a save location and save
 
-## 技術スタック
+## Tech Stack
 
-- **SwiftUI**: ユーザーインターフェース
-- **AudioKit**: オーディオ処理とピッチ検出
-- **AVFoundation**: オーディオファイルの読み書き
-- **UniformTypeIdentifiers**: ファイルタイプの識別
+- **SwiftUI**: User interface
+- **AudioKit**: Audio processing and pitch detection
+- **AVFoundation**: Reading and writing audio files
+- **UniformTypeIdentifiers**: File type identification
 
-## プロジェクト構造
+## Project Structure
 
 ```
 PitchFixer/
 ├── PitchFixer/
-│   ├── PitchFixerApp.swift      # アプリエントリーポイント
-│   ├── ContentView.swift         # メインUIとオーディオ処理ロジック
-│   └── Info.plist               # アプリ設定
-├── PitchFixer.xcodeproj/        # Xcodeプロジェクトファイル
-└── README.md                    # このファイル
+│   ├── PitchFixerApp.swift      # App entry point
+│   ├── ContentView.swift         # Main UI and audio processing logic
+│   └── Info.plist               # App settings
+├── PitchFixer.xcodeproj/        # Xcode project file
+└── README.md                    # This file
 ```
 
-## 主なコンポーネント
+## Main Components
 
 ### AudioPitchManager
-オーディオファイルのピッチ検出と補正を行うマネージャークラス。
+Manager class that performs pitch detection and correction of audio files.
 
-- `detectPitch(url:completion:)`: オーディオファイルのピッチを検出
-- `export(inputURL:outputURL:cents:completion:)`: ピッチを補正してエクスポート
+- `detectPitch(url:completion:)`: Detects the pitch of an audio file
+- `export(inputURL:outputURL:cents:completion:)`: Exports with pitch correction
 
 ### PitchAnalysisResult
-ピッチ解析結果を保持する構造体。
+Structure that holds pitch analysis results.
 
-- `detectedHz`: 検出された周波数（Hz）
-- `centsOffset`: 440Hzからのセント偏差
-- `reliability`: 検出の信頼性（検出回数）
+- `detectedHz`: Detected frequency (Hz)
+- `centsOffset`: Cent deviation from 440Hz
+- `reliability`: Detection reliability (number of detections)
 
-## ライセンス
+## License
 
-このプロジェクトは個人開発プロジェクトです。
+This is a personal development project.

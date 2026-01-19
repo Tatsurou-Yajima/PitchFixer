@@ -57,7 +57,7 @@ class AudioPitchManager {
         player.volume = 0.01
         analysisEngine.output = player
         var detectedOffsets: [Float] = []
-        
+
         let tap = PitchTap(player) { pitch, amp in
             if amp[0] > 0.01 {
                 let freq = Double(pitch[0])
@@ -72,9 +72,9 @@ class AudioPitchManager {
             tap.start()
             let startTime = Double(file.length / 4) / file.fileFormat.sampleRate
             player.play(from: startTime)
-            
+
             Thread.sleep(forTimeInterval: 3.0)
-            
+
             player.stop()
             tap.stop()
             analysisEngine.stop()
@@ -98,27 +98,27 @@ class AudioPitchManager {
             let exportEngine = AVAudioEngine()
             let exportPlayer = AVAudioPlayerNode()
             let exportPitch = AVAudioUnitTimePitch()
-            
+
             exportPitch.pitch = cents
             exportEngine.attach(exportPlayer)
             exportEngine.attach(exportPitch)
             exportEngine.connect(exportPlayer, to: exportPitch, format: inputFile.processingFormat)
             exportEngine.connect(exportPitch, to: exportEngine.mainMixerNode, format: inputFile.processingFormat)
-            
+
             let outputSettings: [String: Any] = [
                 AVFormatIDKey: kAudioFormatMPEG4AAC,
                 AVSampleRateKey: 44100.0,
                 AVNumberOfChannelsKey: 2,
                 AVEncoderBitRateKey: 192000
             ]
-            
+
             try exportEngine.enableManualRenderingMode(.offline, format: exportEngine.mainMixerNode.outputFormat(forBus: 0), maximumFrameCount: 4096)
             let outputFile = try AVAudioFile(forWriting: outputURL, settings: outputSettings)
-            
+
             exportPlayer.scheduleFile(inputFile, at: nil)
             try exportEngine.start()
             exportPlayer.play()
-            
+
             let buffer = AVAudioPCMBuffer(pcmFormat: exportEngine.manualRenderingFormat, frameCapacity: 4096)!
             while exportEngine.manualRenderingSampleTime < inputFile.length {
                 let frameCount = min(inputFile.length - exportEngine.manualRenderingSampleTime, 4096)
@@ -135,12 +135,12 @@ class AudioPitchManager {
 // MARK: - 4. メインUI
 struct ContentView: View {
     @State private var audioManager = AudioPitchManager()
-    @State private var fileName: String = "ファイルをドロップまたは選択"
+    @State private var fileName: String = String(localized: "Drop or select file", comment: "Default file name placeholder")
     @State private var fileURL: URL? = nil
     @State private var isAnalyzing = false
     @State private var isExporting = false
     @State private var analysisResult: PitchAnalysisResult? = nil
-    
+
     // UI管理用
     @State private var isShowingImporter = false
     @State private var isShowingExporter = false
@@ -151,7 +151,7 @@ struct ContentView: View {
         VStack(spacing: 25) {
             Text("PitchFixer 440")
                 .font(.title2).bold()
-            
+
             // ドロップ領域 (Mac/iPad対応)
             RoundedRectangle(cornerRadius: 15)
                 .stroke(isTargeted ? Color.blue : Color.secondary, style: StrokeStyle(lineWidth: 2, dash: [5]))
@@ -160,7 +160,7 @@ struct ContentView: View {
                 .overlay(
                     VStack(spacing: 12) {
                         if isAnalyzing {
-                            ProgressView("解析中...")
+                            ProgressView(String(localized: "Analyzing...", comment: "Analysis progress text"))
                         } else {
                             Image(systemName: fileURL == nil ? "doc.badge.plus" : "music.note")
                                 .font(.system(size: 40))
@@ -172,17 +172,17 @@ struct ContentView: View {
                     handleDrop(providers: providers)
                 }
 
-            Button("ファイルを選択") { isShowingImporter = true }
+            Button(String(localized: "Select File", comment: "Select file button")) { isShowingImporter = true }
                 .buttonStyle(.bordered)
                 .disabled(isAnalyzing || isExporting)
 
             if let result = analysisResult, !isAnalyzing {
                 VStack(spacing: 15) {
-                    Text("推定ピッチ: \(result.hzString)").bold()
+                    Text(String(format: String(localized: "Detected Pitch: %@", comment: "Detected pitch display"), result.hzString)).bold()
                     if isExporting {
-                        ProgressView("補正中...")
+                        ProgressView(String(localized: "Correcting...", comment: "Correction progress text"))
                     } else {
-                        Button("440Hzに補正して保存") { startExport() }
+                        Button(String(localized: "Correct to 440Hz and Save", comment: "Correct and save button")) { startExport() }
                             .buttonStyle(.borderedProminent).tint(.orange)
                     }
                 }
@@ -212,7 +212,7 @@ struct ContentView: View {
         let access = url.startAccessingSecurityScopedResource()
         DispatchQueue.main.async {
             self.fileURL = url
-            self.fileName = url.lastPathComponent
+            self.fileName = url.lastPathComponent.isEmpty ? String(localized: "Drop or select file", comment: "Default file name placeholder") : url.lastPathComponent
             self.isAnalyzing = true
             self.analysisResult = nil
         }
@@ -230,7 +230,7 @@ struct ContentView: View {
         isExporting = true
         let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".m4a")
         let access = sourceURL.startAccessingSecurityScopedResource()
-        
+
         audioManager.export(inputURL: sourceURL, outputURL: tempURL, cents: result.centsOffset) { success in
             DispatchQueue.main.async {
                 isExporting = false
