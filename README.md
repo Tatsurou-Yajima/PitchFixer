@@ -9,6 +9,39 @@ A macOS/iOS application that detects the pitch of audio files and corrects them 
 - **Multiple Format Support**: Supports major audio formats including MP3, WAV, M4A
 - **Drag & Drop**: Easy processing by simply dropping files
 
+## 🚀 Installation (Important!)
+
+Since this app is not notarized by Apple, you must follow these specific steps to bypass macOS security restrictions on the first launch.
+
+### 📥 1. Download
+1. Navigate to the [Releases](https://github.com/Tatsurou-Yajima/PitchFixer/releases) page.
+2. Download the `PitchFixer.dmg` file from the latest version under the **Assets** section.
+
+### 📋 2. Setup Steps
+1. Open the downloaded **PitchFixer.dmg**.
+2. Drag and drop **PitchFixer.app** into your **Applications** folder.
+3. Locate the app in your Applications folder. **Right-click (or Control-click)** the app icon and select **"Open"**.
+4. A warning dialog will appear. Click **"Open"** again to confirm.
+   * *Note: This manual "Right-click > Open" is only required once. Subsequently, you can launch the app by double-clicking.*
+
+### 🔄 Installation Flow
+
+```mermaid
+graph TD
+    A[Download DMG] --> B[Drag App to Applications Folder]
+    B --> C{First Launch?}
+    C -- Yes --> D[Right-Click > Open]
+    D --> E[Click 'Open' on Warning Dialog]
+    E --> F[App Starts]
+    C -- No --> G[Double-Click to Open]
+    G --> F
+    
+    style D fill:#f96,stroke:#333,stroke-width:2px
+    style E fill:#f96,stroke:#333,stroke-width:2px
+```
+
+
+
 ## Supported Platforms
 
 - macOS 15.6 or later
